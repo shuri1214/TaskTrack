@@ -84,15 +84,15 @@ return [
 *///　for local setting end
 		// for heroku setting start
 		'pgsql' => [
-    	'driver'   => 'pgsql',
-    	'host'     => $host,
-    	'database' => $database,
-    	'username' => $username,
-    	'password' => $password,
-    	'charset'  => 'utf8',
-    	'prefix'   => '',
-    	'schema'   => 'public',
-],
+			'driver'   => 'pgsql',
+			'host'     => $host,
+			'database' => $database,
+			'username' => $username,
+			'password' => $password,
+			'charset'  => 'utf8',
+			'prefix'   => '',
+			'schema'   => 'public',
+		],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

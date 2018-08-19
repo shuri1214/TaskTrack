@@ -1,5 +1,14 @@
 <?php
 
+// for heroku setting start
+$url = parse_url(getenv("DATABASE_URL"));
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
+// for heroku setting end
+
+
 return [
 
     /*
@@ -13,7 +22,12 @@ return [
     |
     */
 
+	/*// for local setting start
     'default' => env('DB_CONNECTION', 'mysql'),
+	*/// for local setting end
+	// for heroku setting start
+	'default' => 'pgsql',
+	// for heroku setting end
 
     /*
     |--------------------------------------------------------------------------
@@ -54,6 +68,7 @@ return [
             'engine' => null,
         ],
 
+/*//for local setting start
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -66,6 +81,18 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+*///　for local setting end
+		// for heroku setting start
+		'pgsql' => [
+    	'driver'   => 'pgsql',
+    	'host'     => $host,
+    	'database' => $database,
+    	'username' => $username,
+    	'password' => $password,
+    	'charset'  => 'utf8',
+    	'prefix'   => '',
+    	'schema'   => 'public',
+],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

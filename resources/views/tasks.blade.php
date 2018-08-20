@@ -36,7 +36,7 @@
                     <!-- Task Name -->
                     <td>
                         <div>{{ $task->name }}
-							 @if ( $task->acrive )
+							 @if ( $task->active )
 								< Active >
 							@else
 								< Inactive >

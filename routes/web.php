@@ -12,13 +12,17 @@
 */
 
 Route::get('/', function () {
-//    return view('welcome');
-echo "hogehoge";
-	return redirect('/tasks');
+	return redirect('/performances');
 });
 
 Route::get('/tasks', 'TaskController@index');
 Route::post('/tasks', 'TaskController@store');
 Route::delete('/tasks/{id}', 'TaskController@destroy');
+
+Route::get('/performances', 'PerformanceController@index');
+Route::post('/timer/start/{id}', 'MeasureController@start');
+Route::post('/timer/stop/{id}', 'MeasureController@end');
+Route::post('/performance/{id}', 'PerformanceController@regist');
+
 \URL::forceScheme('https');
 

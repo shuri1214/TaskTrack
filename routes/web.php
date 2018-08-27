@@ -15,6 +15,8 @@ Route::get('/', function () {
 	return redirect('/performances');
 });
 
+Route::resource('users', 'UserController');
+
 Route::get('/tasks', 'TaskController@index');
 Route::post('/tasks', 'TaskController@store');
 Route::delete('/tasks/{id}', 'TaskController@destroy');
@@ -26,3 +28,7 @@ Route::post('/performance/{id}', 'PerformanceController@regist');
 
 \URL::forceScheme('https');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -20,19 +20,7 @@ class TaskController extends Controller
     public function index()
     {
 		$tasks = Task::all();
-		//$tasks = Task::where('active',true)->get();
 		return view('tasks', ['tasks' => $tasks]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-		//
-
     }
 
     /**
@@ -44,7 +32,6 @@ class TaskController extends Controller
     public function store(Request $request)
     {
 		$task = new Task;
-
 		$task->name = request('name');
 		$task->active = (request('active')==true ? true : false );
 		$task->save();
@@ -52,37 +39,19 @@ class TaskController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param  request path task ID(String)  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+		$task = Task::find($id);
+		$task->name = request('name');
+        $task->active = (request('active')==true ? true : false );
+        $task->save();
+        return redirect('/tasks');
     }
 
     /**

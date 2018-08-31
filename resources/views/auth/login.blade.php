@@ -67,6 +67,7 @@
                         </div>
                     </form>
                 </div>
+				<div class="card-footer text-right"><a target="_blank" href="https://scrapbox.io/my-dev-memo/TaskTractTrack_-_%E7%B5%82%E3%82%8F%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8%E3%81%A0%E3%81%91%E6%99%82%E9%96%93%E8%A8%88%E6%B8%AC%E3%81%97%E3%82%88%E3%81%86">TaskTractTrack とは</a></div>
             </div>
         </div>
     </div>

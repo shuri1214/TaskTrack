@@ -33,19 +33,21 @@
 		@foreach ($tasks as $task)
 		<div class="row mb-1 mt-1">
 		<div class="col-sm-9">
-			<form class="form-inline col-sm-9">
-			<input type="text" name="name" value="{{ $task->name }}" class="form-control col-sm-7">
-			<div class="col-sm-3">
-			<input type="checkbox" @if ( $task->active ) checked @endif >計測対象
-			</div>
-			<button class="btn btn-primary col-sm-2">更新</button>
+			<form class="form-inline col-sm-9" action="/tasks/{{ $task->id }}" method="POST">
+				{{ csrf_field() }}
+				<input type="text" name="name" value="{{ $task->name }}" class="form-control col-sm-7">
+				<div class="col-sm-3 form-check">
+					<input class="form-check-input" type="checkbox" name="active" id="task-upd{{ $task->id }}-active" @if ( $task->active ) checked @endif >
+					<label class="form-check-label" for="task-upd{{ $task->id }}-active">計測対象</label>
+				</div>
+				<button class="btn btn-primary col-sm-2"><i class="fas fa-edit"></i> 更新</button>
 			</form>
 		</div>
 		<div class="col-sm-3">
 			<form class="form-inline" action="/tasks/{{ $task->id }}" method="POST">
                	{{ csrf_field() }}
                	{{ method_field('DELETE') }}
-             	 <button class="btn btn-danger col-sm-5">削除</button>
+             	 <button class="btn btn-danger col-sm-5"><i class="fas fa-trash-alt"></i> 削除</button>
             </form>
 		</div>
 		</div>

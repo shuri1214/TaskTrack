@@ -12,19 +12,21 @@
 */
 
 Route::get('/', function () {
-	return redirect('/performances');
+	return redirect('/tasks');
 });
 
-Route::resource('users', 'UserController');
+//Route::resource('users', 'UserController');
 
-Route::get('/tasks', 'TaskController@index');
+Route::get('/tasks', 'TaskController@index')->name('tasks');
 Route::post('/tasks', 'TaskController@store');
+Route::post('/tasks/{id}', 'TaskController@update');
 Route::delete('/tasks/{id}', 'TaskController@destroy');
 
-Route::get('/performances', 'PerformanceController@index');
+Route::get('/performances', 'PerformanceController@index')->name('performances');
 Route::post('/timer/start/{id}', 'MeasureController@start');
 Route::post('/timer/stop/{id}', 'MeasureController@end');
-Route::post('/performance/{id}', 'PerformanceController@regist');
+Route::post('/performance/{measure_id}/task/{task_id}', 'PerformanceController@regist');
+Route::post('/performance/{measure_id}/newtask', 'PerformanceController@registwithtask');
 
 \URL::forceScheme('https');
 

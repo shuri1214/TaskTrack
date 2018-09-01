@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class TaskController extends Controller
     public function index()
     {
 		$user_id = Auth::id();
-		$tasks = Task::where('user_id',$user_id)->get();
+		$tasks = User::find($user_id)->tasks;
 		return view('tasks', ['tasks' => $tasks]);
     }
 

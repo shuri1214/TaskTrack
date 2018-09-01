@@ -98,7 +98,7 @@ class PerformanceController extends Controller
 
 	private function storePerformance($task_id,$measure_id)
 	{
-		// task_id からtask名を取得
+		// task_id からtask名を取得    一旦登録 + $p->task->name 的なのをしてupdate は却下
 		$task_name = Task::where('id',$task_id)->value('name');
         // performanceテーブルに新規登録
         $p = new Performance();

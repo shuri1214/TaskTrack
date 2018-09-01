@@ -26,7 +26,7 @@
     		<form action="/performance/{{ $measure->id }}/task/{{ $task->id }}" method="POST">
         		{{ csrf_field() }}
             	<!-- input type="hidden" name="measure_id" value=" {{ $measure->id }}" id="measure_id"-->
-            	<button class="btn btn-primary col-sm-12">{{ $task->name }} <i class="fas fa-thumbtack"></i></button>
+            	<button class="btn btn-primary col-sm-12" data-toggle="tooltip" title="{{ $task->name }}" >{{ $task->name }} <i class="fas fa-thumbtack"></i></button>
       		</form>
 		</div>
 	@endforeach

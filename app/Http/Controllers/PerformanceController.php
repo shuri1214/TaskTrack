@@ -7,6 +7,8 @@ use App\Performance;
 use App\Measure;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use Log;
 
 class PerformanceController extends Controller
@@ -27,7 +29,8 @@ class PerformanceController extends Controller
     {
 		// 計測状態を取り出し、viewに設定
 		$measure= Measure::latestIncompleteStatus()->first();
-		$tasks = Task::where('active',true)->get();
+		$user_id = Auth::id();
+		$tasks = Task::where('user_id',$user_id)->where('active',true)->get();
 		$st = new \DateTime(self::getStartTime());
 		$start_time = $st->format('H:i:s');
 		return view('performance', ['tasks' => $tasks , 'measure'=>$measure , 'start_time'=>$start_time]);
@@ -42,6 +45,8 @@ class PerformanceController extends Controller
      */
     public function regist(Request $request,$measure_id,$task_id)
     {
+        $user_id = Auth::id(); // user_id
+        if(! self::isLoggedinUser($user_id) ) return redirect('/performances'); // 不正ログインだと思うんだ・・・
 		// performanceテーブルに新規登録
 		$ret = self::storePerformance(  $task_id, $measure_id );
 		return redirect('/performances');
@@ -56,14 +61,17 @@ class PerformanceController extends Controller
      */
     public function registwithtask(Request $request,$measure_id)
 	{
-		// タスク登録の作業がワンクッション必要
-		$task = new Task;
-		$task->name = request('name');
-        $task->active = true; // ここのページはオプション設けてないので 
-        $task->save();
-		$task_id = $task->id;
+        $user_id = Auth::id(); // user_id
+		if(! self::isLoggedinUser($user_id) ) return redirect('/performances'); // 不正ログインだと思うんだけど・・
+		// Taskテーブルに新規登録
+        $task_name = request('name');
+        $task_active = true;
+        $task = new Task;
+		$task = $task->saveNewtask($task_name,$task_active );
+		if(!$task) return redirect('/performances');
 
         // performanceテーブルに新規登録
+		$task_id = $task->id;
         $ret = self::storePerformance( $task_id, $measure_id );
 		
 		return redirect('/performances');
@@ -73,8 +81,9 @@ class PerformanceController extends Controller
 
 	private function getStartTime()
 	{
+		$u_id = Auth::id();
 		$m = new Measure();
-		$m = $m->where('status', Measure::$status_doing );
+		$m = $m->where('user_id',$u_id)->where('status', Measure::$status_doing );
         $m_id = $m->value('id');
 		if ($m_id == null) return null; // そもそもmeasureの開始がされていない
         $m_s_time = $m->value('start_time');
@@ -102,4 +111,14 @@ class PerformanceController extends Controller
         $p->fill($data)->save();
 		return $p;
 	}
+
+    /**
+     * ログインユーザーがリクエストで飛んできたかチェック(要らないかも)
+     */
+    private function isLoggedinUser($user_id)
+    {
+        if (!Auth::check()) return false; // こっちは要らない気がする
+        if(Auth::id() != $user_id) return false;
+        return true;
+    }
 }

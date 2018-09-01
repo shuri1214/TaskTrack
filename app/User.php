@@ -26,4 +26,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+	/**
+	 * Task を取得.
+	 */
+	public function tasks()
+	{
+		return $this->hasMany('App\Task');
+	}
+
+    /**
+     * Measure を取得.
+     */
+    public function measures()
+    {
+        return $this->hasMany('App\Measure');
+    }
+
 }

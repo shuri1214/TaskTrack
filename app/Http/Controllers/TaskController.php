@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use Log;
 
 class TaskController extends Controller
@@ -19,7 +21,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-		$tasks = Task::all();
+		$user_id = Auth::id();
+		$tasks = Task::where('user_id',$user_id)->get();
 		return view('tasks', ['tasks' => $tasks]);
     }
 
@@ -31,10 +34,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+		$name = request('name');
+		$active = (request('active')==true ? true : false );
 		$task = new Task;
-		$task->name = request('name');
-		$task->active = (request('active')==true ? true : false );
-		$task->save();
+		if( !$task->saveNewtask($name,$active )) return redirect('/tasks'); // アラートメッセージとかの処理があれば
 		return redirect('/tasks');
     }
 

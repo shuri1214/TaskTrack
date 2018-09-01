@@ -22,7 +22,7 @@ return [
     |
     */
 
-	/*// for local setting start
+	/// for local setting start
     'default' => env('DB_CONNECTION', 'mysql'),
 	// for local setting end
 	/*/// for heroku setting start

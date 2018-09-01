@@ -9,7 +9,7 @@ use Log;
 
 class Performance extends Model
 {
-	protected $fillable = ['task_id','measure_id','start_time','end_time','perform_time'];
+	protected $fillable = ['task_id','task_name','measure_id','start_time','end_time','perform_time'];
     //
 	public function task()
 	{

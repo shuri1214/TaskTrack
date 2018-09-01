@@ -98,12 +98,15 @@ class PerformanceController extends Controller
 
 	private function storePerformance($task_id,$measure_id)
 	{
+		// task_id からtask名を取得
+		$task_name = Task::where('id',$task_id)->value('name');
         // performanceテーブルに新規登録
         $p = new Performance();
         $start_time = new Carbon(self::getStartTime()); // datetime型
         $end_time = Carbon::now();
         $data = array(
                 'task_id'=>$task_id,
+				'task_name'=>$task_name,
                 'measure_id'=>$measure_id,
                 'start_time'=>$start_time,
                 'end_time'=>$end_time

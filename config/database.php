@@ -1,6 +1,6 @@
 <?php
 
-/*// for heroku setting start
+/*// deprecated setting for heroku setting start
 $url = parse_url(getenv("DATABASE_URL"));
 $host = $url["host"];
 $username = $url["user"];
@@ -22,7 +22,7 @@ return [
     |
     */
 
-	/*// for local setting start
+	/// for local setting start
     'default' => env('DB_CONNECTION', 'mysql'),
 	// for local setting end
 	/*/// for heroku setting start
@@ -68,7 +68,6 @@ return [
             'engine' => null,
         ],
 
-///for local setting start
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -81,7 +80,7 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-//*///　for local setting end
+/* deprecated heroku setting
 		// for heroku setting start
 		'hrkpgsql' => [
 			'driver'   => 'pgsql',
@@ -93,6 +92,7 @@ return [
 			'prefix'   => '',
 			'schema'   => 'public',
 		],
+*/
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

@@ -20,7 +20,7 @@ class ReportController extends Controller
 
 	/**
 	 * diaplay measure and performance
-	 * @param request param
+	 * @param Request $request request params
 	*/
 	public function index(Request $request)
 	{
@@ -42,7 +42,7 @@ class ReportController extends Controller
 		//measure に関するperformance 取得
 		// request にmeasure id 設定がある場合、useridと紐づいてあるかどうかかくにんする
 		$performances = array();
-		if( !empty($ms) ){
+		if( !empty($ms) && $um->first() !== null ){
 			$query_mid = ( empty($req_mid) ? $um->first()->id : $req_mid );
 			$mp = new Measure;
 			$performances = $mp->find($query_mid)->performances()

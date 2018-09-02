@@ -45,3 +45,19 @@
   left: 30%;
   margin-top: -4px;
 }
+
+#perform-message {
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 30%;
+    width: 10rem;
+    height: 10rem;
+    z-index: 999;
+    text-align: center;
+    line-height: 9.2rem;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}

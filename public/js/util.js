@@ -19,7 +19,13 @@ $(function () {
         return false;
     });
     
-    // Tooltip test
+    // performance success message 
+    if($('#perform-message').length){
+        $('#perform-message').fadeIn(500, function () {
+            $(this).delay(2000).fadeOut("slow");
+        });
+    }
+    // Tooltip
     $('[data-toggle="tooltip"]').tooltip();
     
     // for report page

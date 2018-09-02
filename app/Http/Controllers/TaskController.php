@@ -38,7 +38,12 @@ class TaskController extends Controller
 		$name = request('name');
 		$active = (request('active')==true ? true : false );
 		$task = new Task;
-		if( !$task->saveNewtask($name,$active )) return redirect('/tasks'); // アラートメッセージとかの処理があれば
+		if( !$task->saveNewtask($name,$active )) 
+		{
+			$request->session()->flash('danger', 'すまぬ・・・登録できなんだ');
+		} else {
+			$request->session()->flash('success', 'タスク登録した');
+		}
 		return redirect('/tasks');
     }
 
@@ -55,6 +60,12 @@ class TaskController extends Controller
 		$task->name = request('name');
         $task->active = (request('active')==true ? true : false );
         $task->save();
+        if( !$task->save() )
+        {
+            $request->session()->flash('danger', 'すまぬ・・・更新は、失敗した');
+        } else {
+            $request->session()->flash('success', 'タスク更新した');
+        }
         return redirect('/tasks');
     }
 
@@ -69,7 +80,12 @@ class TaskController extends Controller
     public function destroy(Request $request, $id, Task $task)
     {
 		$task = Task::find($id);
-		$task->delete();
+        if( ! $task->delete() )
+        {
+            $request->session()->flash('danger', '消えぬ！消えぬぞ・・！！');
+        } else {
+            $request->session()->flash('success', '削除してくれたわ！');
+        }
 		return redirect('/tasks'); 
     }
 }

@@ -6,6 +6,11 @@
 
 @section('content')
     <h1>タスク時間計測</h1>
+@if (Session::has('perform-message'))
+	<div id="perform-message" class="alert alert-success">
+        {{ session('perform-message') }}
+	</div>
+@endif
 	<div class="card card-body bg-light">
 	ただいま：　第 {{ $measure->id }} MEASURE  @if ( $measure->status == 'ready' ) 開始前 @else 計測中 @endif
 	</div>

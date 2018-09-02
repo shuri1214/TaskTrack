@@ -70,6 +70,17 @@
   </div>
 </nav>
 <div class="container mt-2">
+@if (Session::has('danger'))
+	<div class="alert alert-danger" role="alert">
+		{{ session('danger') }}
+	</div>
+@endif
+@if (Session::has('success'))
+	<div class="alert alert-success" role="alert">
+		{{ session('success') }}
+	</div>
+@endif
+
 	@yield('content')
 </div>
 <p id="page-top"><a href="#" id="inner-page-top">TOP</a></p>

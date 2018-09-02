@@ -49,6 +49,7 @@ class PerformanceController extends Controller
         if(! self::isLoggedinUser($user_id) ) return redirect('/performances'); // 不正ログインだと思うんだ・・・
 		// performanceテーブルに新規登録
 		$ret = self::storePerformance(  $task_id, $measure_id );
+		$request->session()->flash('perform-message', '良いネ!!');
 		return redirect('/performances');
     }
 
@@ -73,7 +74,7 @@ class PerformanceController extends Controller
         // performanceテーブルに新規登録
 		$task_id = $task->id;
         $ret = self::storePerformance( $task_id, $measure_id );
-		
+		$request->session()->flash('perform-message', '良いヨ良いヨ!!');
 		return redirect('/performances');
 	}
 

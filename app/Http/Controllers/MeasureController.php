@@ -39,10 +39,14 @@ class MeasureController extends Controller
      */
     public function end(Request $request , $id)
     {
-        $measure = Measure::find($id);
+		$m = new Measure;
+		$measure = $m->where('id',$id)->first();
+		$mstart_time = $measure->start_time;
 		$user_id = $measure->user_id;
+		$start_time = $measure->start_time; // 文字列か何かでのupdateが走るので、同じ値を上書きさせる
+		// 正しいユーザーリクエストかどうか（デフォルトであるのかもだけど）
 		if(!self::isLoggedinUser($user_id)) return redirect('/performances'); // 怪しいなら登録しない
-        $measure->fill(array('status' => Measure::$status_done,'end_time'=> Carbon::now()))->save();
+        $measure->fill(array('status' => Measure::$status_done, 'start_time'=>new Carbon($start_time) ,'end_time'=> Carbon::now()))->save();
         return redirect('/finished');
     }
 

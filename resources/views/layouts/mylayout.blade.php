@@ -32,6 +32,11 @@
 		<li class="nav-item">
 			<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
 		</li>
+		<li class="nav-item">
+            <a class="nav-link" href="https://scrapbox.io/my-dev-memo/TaskTractTrack_-_%E7%B5%82%E3%82%8F%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8%E3%81%A0%E3%81%91%E6%99%82%E9%96%93%E8%A8%88%E6%B8%AC%E3%81%97%E3%82%88%E3%81%86" target="_blank">
+                <i class="fas fa-question-circle"></i>　
+            </a>
+        </li>
 	</ul>
 @else
 	<ul class="navbar-nav ml-auto">
@@ -55,6 +60,11 @@
             </form>
         </div>
       </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://scrapbox.io/my-dev-memo/TaskTractTrack_-_%E7%B5%82%E3%82%8F%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8%E3%81%A0%E3%81%91%E6%99%82%E9%96%93%E8%A8%88%E6%B8%AC%E3%81%97%E3%82%88%E3%81%86" target="_blank">
+                <i class="fas fa-question-circle"></i>　
+            </a>
+        </li>
 	</ul>
 @endguest
   </div>

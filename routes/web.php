@@ -22,11 +22,14 @@ Route::post('/tasks', 'TaskController@store');
 Route::post('/tasks/{id}', 'TaskController@update');
 Route::delete('/tasks/{id}', 'TaskController@destroy');
 
-Route::get('/performances', 'PerformanceController@index')->name('performances');
 Route::post('/timer/start/{id}', 'MeasureController@start');
 Route::post('/timer/stop/{id}', 'MeasureController@end');
+Route::get('/finished', 'MeasureController@finished');
+
+Route::get('/performances', 'PerformanceController@index')->name('performances');
 Route::post('/performance/{measure_id}/task/{task_id}', 'PerformanceController@regist');
 Route::post('/performance/{measure_id}/newtask', 'PerformanceController@registwithtask');
+
 Route::get('/reports', 'ReportController@index')->name('reports');
 
 \URL::forceScheme('https');

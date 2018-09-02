@@ -43,9 +43,21 @@ class MeasureController extends Controller
 		$user_id = $measure->user_id;
 		if(!self::isLoggedinUser($user_id)) return redirect('/performances'); // 怪しいなら登録しない
         $measure->fill(array('status' => Measure::$status_done,'end_time'=> Carbon::now()))->save();
-        return redirect('/performances');
+        return redirect('/finished');
     }
 
+    /**
+     * Updaate measure table column end_time. for ending measure.
+     *
+     * @param  HttpRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+	public function finished(Request $request)
+	{
+		return view('endmeasure' , []);
+	}
+
+/** private **/
 	/**
 	 * ログインユーザーがリクエストで飛んできたかチェック(要らないかも)
 	 */

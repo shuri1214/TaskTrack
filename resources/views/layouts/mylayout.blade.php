@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 <body>
@@ -35,7 +36,10 @@
 @else
 	<ul class="navbar-nav ml-auto">
 		<li class="nav-item">
-			<a class="nav-link" href="{{ route('performances') }}">計測</a>
+			<a class="nav-link" href="{{ route('performances') }}">時間計測</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{ route('reports') }}">レポート</a>
 		</li>
 
       <li class="nav-item dropdown">
@@ -58,12 +62,11 @@
 <div class="container mt-2">
 	@yield('content')
 </div>
-    </div><!-- id:app -->
+<p id="page-top"><a href="#" id="inner-page-top">TOP</a></p>
+</div><!-- id:app -->
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-	<script>
-  		$('[data-toggle="tooltip"]').tooltip();
-	</script>
+<!-- Scripts -->
+	<script src="{{ asset('js/app.js') }}"></script>
+	<script src="{{ asset('js/util.js') }}"></script>
 </body>
 </html>

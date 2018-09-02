@@ -27,6 +27,7 @@ Route::post('/timer/start/{id}', 'MeasureController@start');
 Route::post('/timer/stop/{id}', 'MeasureController@end');
 Route::post('/performance/{measure_id}/task/{task_id}', 'PerformanceController@regist');
 Route::post('/performance/{measure_id}/newtask', 'PerformanceController@registwithtask');
+Route::get('/reports', 'ReportController@index')->name('reports');
 
 \URL::forceScheme('https');
 

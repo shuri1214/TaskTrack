@@ -19,7 +19,7 @@ class Measure extends Model
 
 	public function performances()
 	{
-		return $this->hasMany('App\performances');
+		return $this->hasMany('App\Performance');
 	}
 
     public function user()

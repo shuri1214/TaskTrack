@@ -24,7 +24,13 @@ $(function () {
         $('#perform-message').fadeIn(500, function () {
             $(this).delay(2000).fadeOut("slow");
         });
+        setInterval(function(){ 
+	        $('#perform-message').addClass('magictime vanishOut');
+        }, 1300 );
     }
+    
+    $()
+    
     // Tooltip
     $('[data-toggle="tooltip"]').tooltip();
     
@@ -33,4 +39,5 @@ $(function () {
                 var n=location.pathname+"?mid="+$(this).val();
                 return window.location.href=n;
     });
+    
 });

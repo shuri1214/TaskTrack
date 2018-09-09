@@ -16,6 +16,7 @@
 	</div>
 
 @if ( count($performances)>0 )
+<!-- ToDo: for applying to postgreSQL
 	<div class="table-responsive">
 		<h5>作業時間リスト</h5>
 		<table id="report-table" class="table table-bordered tablesorter">
@@ -30,6 +31,7 @@
 			</tbody>
 		</table>
 	</div>
+-->
 
 	<div class="mt-4 mb-4">
 		<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#performancedlist" aria-expanded="false" aria-controls="performancedlist">

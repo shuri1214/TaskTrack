@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Performance;
 use App\Measure;
 use App\User;
@@ -40,16 +41,18 @@ class ReportController extends Controller
 		$ms = $um->get();
 
 		//measure に関するperformance 取得
-		// request にmeasure id 設定がある場合、useridと紐づいてあるかどうかかくにんする
 		$performances = array();
+		$report = array();
 		if( !empty($ms) && $um->first() !== null ){
 			$query_mid = ( empty($req_mid) ? $um->first()->id : $req_mid );
 			$mp = new Measure;
 			$performances = $mp->find($query_mid)->performances()
 				->orderBy('id','desc')
 				->get();
+			// 時々値がおかしい気がする・・・TBLカラム見直しが必要か  ToDo
+			$report = DB::select('select SEC_TO_TIME(SUM( TIMEDIFF(end_time , start_time))) as total_time, task_name from performances where measure_id = ? group by task_name order by total_time desc' , [$query_mid] );
 		}
 
-		return view( 'reports', ['measures'=>$ms,'selected_measure_id'=>$req_mid, 'performances'=>$performances]);
+		return view( 'reports', ['measures'=>$ms,'selected_measure_id'=>$req_mid, 'performances'=>$performances, 'report'=>$report]);
 	}
 }

@@ -39,5 +39,17 @@ $(function () {
                 var n=location.pathname+"?mid="+$(this).val();
                 return window.location.href=n;
     });
+    $("#report-table").DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Japanese.json"
+        },
+        "paging"        : false,
+        "order"         : [[ 0, 'desc' ]],
+        "lengthChange"  : false,
+        "searching"     : false,
+        "info"          : false,
+        "scrollX"       : true,
+        "bAutoWidth"     : false,
+    });
     
 });

@@ -51,7 +51,7 @@ class ReportController extends Controller
 				->get();
 			// 時々値がおかしい気がする・・・TBLカラム見直しが必要か  ToDo
 			//$report = DB::select('select SEC_TO_TIME(SUM( TIMEDIFF(end_time , start_time))) as total_time, task_name from performances where measure_id = ? group by task_name order by total_time desc' , [$query_mid] );
-			$report = DB::select('select (end_time - start_time) as total_time, task_name from performances where measure_id = ? group by task_name order by total_time desc' , [$query_mid] );
+			//$report = DB::select('select (end_time - start_time) as total_time, task_name from performances where measure_id = ? group by task_name order by total_time desc' , [$query_mid] );
 		}
 
 		return view( 'reports', ['measures'=>$ms,'selected_measure_id'=>$req_mid, 'performances'=>$performances, 'report'=>$report]);

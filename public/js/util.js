@@ -39,6 +39,7 @@ $(function () {
                 var n=location.pathname+"?mid="+$(this).val();
                 return window.location.href=n;
     });
+/*
     $("#report-table").DataTable({
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Japanese.json"
@@ -51,5 +52,8 @@ $(function () {
         "scrollX"       : true,
         "bAutoWidth"     : false,
     });
-    
+*/  
+    $("#report-table").tablesorter({
+            sortList: [[0,1]]
+         });
 });

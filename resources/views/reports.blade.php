@@ -18,7 +18,7 @@
 @if ( count($performances)>0 )
 	<div class="table-responsive">
 		<h5>作業時間リスト</h5>
-		<table id="report-table" class="table table-bordered" style="width:100%">
+		<table id="report-table" class="table table-bordered tablesorter">
 			<thead><th> Time </th><th> Name </th></thead>
 			<tbody>
 	@foreach ($report as $r)
